@@ -101,5 +101,92 @@ export default function Pool() {
     return sortConfig.key === name ? sortConfig.direction : undefined
   }
 
-  return <></>
+  // Logging
+  console.log('term:', term)
+  console.log('pools___:', pools)
+
+  return (
+    <>
+      <PageWrapper>
+        <SwapPoolTabs active={'pool'} />
+        <>
+          <div className="flex justify-between">
+            <h1 className="text-3xl pb-2">
+              {term?.length > 0
+                ? (items && items?.length > 0 ? items?.length : '0') + ' Results Found'
+                : (pools && pools?.length > 0 ? pools?.length : '') + ' Yield Instruments'}
+            </h1>
+          </div>
+          <div className="py-2 flex justify-between">
+            <input
+              className="py-2 bg-transparent w-full focus:outline-none"
+              onChange={e => search(e.target.value)}
+              value={term}
+              placeholder="Search for an instrument..."
+            />
+            <SortByDropdown requestSort={requestSort} sortConfigKey={sortConfig?.key} />
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            <SushiBar />
+            {items && items.length > 0
+              ? items.map(pool => {
+                  return (
+                    <div key={pool?.id}>
+                      <FadeIn>
+                        <YieldItem darkMode={darkMode} pool={pool} />
+                      </FadeIn>
+                    </div>
+                  )
+                })
+              : 'No Instruments Found'}
+          </div>
+        </>
+      </PageWrapper>
+    </>
+  )
+}
+
+const YieldItem = ({ darkMode, pool }) => {
+  return (
+    <>
+      <div
+        className={
+          'relative rounded-lg border px-6 py-5 shadow-sm flex items-center space-x-6 ' +
+          (darkMode ? 'border-gray-600' : 'border-gray-300')
+        }
+      >
+        <div className="flex-shrink-0">
+          <DoubleLogo a0={pool?.details?.token0?.id} a1={pool?.details?.token1?.id} size={26} margin={10} />
+        </div>
+        <div className="flex flex-1 justify-between min-w-0">
+          <button className="focus:outline-none text-left">
+            <span className="absolute inset-0" aria-hidden="true" />
+            <p className="text-sm font-medium">{pool?.details?.token0?.symbol + '-' + pool?.details?.token1?.symbol}</p>
+            <p className="text-sm truncate">${Number(pool?.tvl).toFixed(2)}</p>
+          </button>
+          <div className="text-lg">{Number(pool?.apy).toFixed(3)}%</div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+const SushiBar = () => {
+  return (
+    <>
+      <div className={'relative rounded-lg border px-6 py-5 shadow-sm flex items-center space-x-6 border-yellow-400'}>
+        <div className="flex-shrink-0">
+          <img className="w-12 h-12" src={XSushiGlow} />
+        </div>
+        <div className="flex flex-1 justify-between min-w-0">
+          <button className="focus:outline-none text-left">
+            <span className="absolute inset-0" aria-hidden="true" />
+            <p className="text-sm font-medium">xSUSHI</p>
+            <p className="text-sm truncate">$20,000,000</p>
+          </button>
+          <div className="text-lg">15%</div>
+        </div>
+      </div>
+    </>
+  )
 }
