@@ -92,5 +92,14 @@ export default function Pool() {
   })
   const flattenSearchResults = result.map(a => (a.item ? a.item : a))
 
+  // Sorting Setup
+  const { items, requestSort, sortConfig } = useSortableData(flattenSearchResults)
+  const getClassNamesFor = name => {
+    if (!sortConfig) {
+      return
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined
+  }
+
   return <></>
 }
