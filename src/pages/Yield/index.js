@@ -84,5 +84,13 @@ export default function Pool() {
     fetchData()
   }, [])
 
+  // Search Setup
+  const options = { keys: ['symbol', 'name', 'pair'] }
+  const { result, search, term } = useFuse({
+    data: pools && pools.length > 0 ? pools : [],
+    options
+  })
+  const flattenSearchResults = result.map(a => (a.item ? a.item : a))
+
   return <></>
 }
