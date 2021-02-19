@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 // Components
@@ -17,13 +17,7 @@ import useFarms from '../../sushi-hooks/useFarms'
 import useFuse from '../../hooks/useFuse'
 import useSortableData from '../../hooks/useSortableData'
 
-// Apollo Queries
-import { exchange } from '../../apollo/client'
-import { liquidityPositionSubsetQuery } from '../../apollo/queries'
-
 // Additional Libraries
-import sushiData from '@sushiswap/sushi-data'
-import _ from 'lodash'
 import { FadeIn } from './Animations'
 
 // Image Assets
