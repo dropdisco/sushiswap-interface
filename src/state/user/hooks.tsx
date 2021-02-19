@@ -65,6 +65,11 @@ export function useDarkModeManager(): [boolean, () => void] {
     dispatch(updateUserDarkMode({ userDarkMode: !darkMode }))
   }, [darkMode, dispatch])
 
+  // for tailwinds dark mode
+  const root = window.document.documentElement
+  root.classList.remove(darkMode ? 'light' : 'dark')
+  root.classList.add(darkMode ? 'dark' : 'light')
+
   return [darkMode, toggleSetDarkMode]
 }
 
