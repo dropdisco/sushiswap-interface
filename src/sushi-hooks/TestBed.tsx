@@ -1,9 +1,17 @@
 import React from 'react'
-import useDashboard from './useDashboard'
+import useUserBalances from './useUserBalances'
+import useUserFarms from './useUserFarms'
+import useMakerInfo from './useMakerInfo'
 
 const TestBed = () => {
-  const { find } = useDashboard()
-  find()
+  //const { userFarm, userLP } = useDashboard()
+  const { userBalances } = useUserBalances()
+  const { userFarms } = useUserFarms()
+  const { makerInfo } = useMakerInfo()
+
+  console.log('userBalances:', userBalances)
+  console.log('userFarms:', userFarms)
+  console.log('makerInfo:', makerInfo)
   return <></>
 }
 
