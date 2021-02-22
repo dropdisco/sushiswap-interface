@@ -23,10 +23,12 @@ const useDashboard = () => {
       pid => ![29, 30, 33, 45, 61, 62, 102, 124, 125, 126].includes(pid)
     )
     const pools = await dashboard2Contract?.findPools(account, pids)
-    pools.map((pool: { pid: string; allocPoint: any; lpToken: any; token0: any; token1: any }) => {
+
+    console.log('user_pools:', pools)
+    pools.map((pool: { pid: any; allocPoint: any; lpToken: any; token0: any; token1: any }) => {
       assets.push({
-        pid: pool.pid,
-        allocPoint: BigNumber.from(pool.allocPoint),
+        pid: BigNumber.from(pool.pid).toNumber(),
+        allocPoint: BigNumber.from(pool.allocPoint).toNumber(),
         address: pool.pid + '_pid_staked',
         name: null,
         symbol: null,
