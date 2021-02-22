@@ -6,11 +6,11 @@ import useMakerInfo from './useMakerInfo'
 const TestBed = () => {
   //const { userFarm, userLP } = useDashboard()
   const { userBalances } = useUserBalances()
-  const { userFarms } = useUserFarms()
+  const { farms } = useUserFarms()
   const { makerInfo } = useMakerInfo()
 
   console.log('userBalances:', userBalances)
-  console.log('userFarms:', userFarms)
+  console.log('userFarms:', farms)
   console.log('makerInfo:', makerInfo)
   return <></>
 }

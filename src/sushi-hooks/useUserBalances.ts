@@ -43,7 +43,7 @@ const useDashboard = () => {
         [BigNumber.from(factory.allPairsLength).toNumber(), (b + 1) * stepsize].reduce((m, e) => (e < m ? e : m))
       )
       pairs.map((pair: { token: string; token0: any; token1: any }) => {
-        console.log('pair:', pair)
+        //console.log('pair:', pair)
         userLP.push({
           lpToken: pair.token,
           token0asset: pair.token0,
@@ -134,7 +134,7 @@ const useDashboard = () => {
       account,
       userFarms.map((a: any) => a.pid)
     )
-    console.log('userFarmsDetails:', userFarmsDetails)
+    // console.log('userFarmsDetails:', userFarmsDetails)
     // todo: redunant, can combine with above
     const tokenDetailsFarm = await dashboardContract?.getTokenInfo(
       Array.from(new Set(userFarms?.reduce((a: any, b: any) => a.push(b.token0asset, b.token1asset) && a, [])))
@@ -176,10 +176,10 @@ const useDashboard = () => {
           (parseFloat(token1Balance) * parseFloat(ethUSDRate)) /
           (parseFloat(token1Rate) !== 0 ? parseFloat(token1Rate) : 1)
 
-        console.log('value:', token0Balance, token1Balance, token0Value + token1Value)
+        //console.log('value:', token0Balance, token1Balance, token0Value + token1Value)
 
         const pending = await masterChefContract?.pendingSushi(farm.pid, account)
-        console.log('pending:', pending)
+        //console.log('pending:', pending)
         return {
           ...farm,
           token0balance: token0Balance,
