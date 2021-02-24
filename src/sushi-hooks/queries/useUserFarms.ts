@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 
-import { useDashboardContract, useDashboard2Contract, useMasterChefContract } from './useContract'
-import { useActiveWeb3React } from '../hooks/index'
+import { useDashboardContract, useDashboard2Contract, useMasterChefContract } from '../useContract'
+import { useActiveWeb3React } from '../../hooks/index'
 
-import Fraction from '../constants/Fraction'
+import Fraction from '../../constants/Fraction'
 
 const useDashboard = () => {
   const { account } = useActiveWeb3React()

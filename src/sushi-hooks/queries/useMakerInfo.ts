@@ -1,30 +1,18 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from 'ethers'
-import { useMakerContract, useMasterChefContract, useMakerInfoContract } from './useContract'
-import { useTransactionAdder } from '../state/transactions/hooks'
+import { useActiveWeb3React } from '../../hooks'
+
+import { useMasterChefContract, useMakerInfoContract } from '../useContract'
 
 const useMaker = () => {
-  const addTransaction = useTransactionAdder()
-  const makerContract = useMakerContract(true) // withSigner
+  const { account } = useActiveWeb3React()
   const masterChefContract = useMasterChefContract()
   const makerInfoContract = useMakerInfoContract()
 
-  console.log('makerInfoContract:', makerInfoContract)
-
-  // Serve
-  const serve = useCallback(
-    async (token0: string, token1: string) => {
-      try {
-        const tx = await makerContract?.methods.convert(token0, token1)
-        return addTransaction(tx, { summary: 'Serve' })
-      } catch (e) {
-        return e
-      }
-    },
-    [addTransaction, makerContract]
-  )
+  const [makerInfo, setMakerInfo] = useState<any | undefined>()
 
   // get Maker Info: Pools and ethRate
+  // todo: Refactor into useMemo pattern
   const getMakerInfo = useCallback(async () => {
     const poolLength = await masterChefContract?.functions.poolLength()
     const pids = [...Array(poolLength - 1).keys()].filter(
@@ -83,27 +71,16 @@ const useMaker = () => {
       return pairFormatted
     })
 
-    return { ethRate: ethRate, pairs: pairs }
+    setMakerInfo({ ethRate: ethRate, pairs: pairs })
   }, [makerInfoContract, masterChefContract?.functions])
 
-  // ServeAll
-  const serveAll = useCallback(async () => {
-    const info = await getMakerInfo()
-    const pairsOrdered = [...info.pairs]
-      .sort((a: any, b: any) => Number(b.totalValueInCurrency) - Number(a.totalValueInCurrency))
-      .slice(0, 15)
-    //console.log(pairsOrdered)
-    const tokens0 = pairsOrdered.map((pair: { token0: string }) => pair.token0)
-    const tokens1 = pairsOrdered.map((pair: { token1: string }) => pair.token1)
-    try {
-      const tx = await makerContract?.methods.convertAll(tokens0, tokens1)
-      return addTransaction(tx, { summary: 'Serve All' })
-    } catch (e) {
-      return e
+  useEffect(() => {
+    if (account && masterChefContract && makerInfoContract) {
+      getMakerInfo()
     }
-  }, [addTransaction, getMakerInfo, makerContract?.methods])
+  }, [account, getMakerInfo, makerInfoContract, masterChefContract])
 
-  return { serve, serveAll, getMakerInfo }
+  return { makerInfo, getMakerInfo }
 }
 
 export default useMaker

@@ -57,6 +57,7 @@ module.exports = {
     }
   },
   variants: {},
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
+  //plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
   purge: false //If you have manually configured PurgeCSS outside of Tailwind
 }

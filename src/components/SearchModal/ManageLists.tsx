@@ -50,7 +50,7 @@ const PopoverContainer = styled.div<{ show: boolean }>`
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
   color: ${({ theme }) => theme.text2};
-  border-radius: 0.5rem;
+  border-radius: ${({ theme }) => theme.borderRadius};
   padding: 1rem;
   display: grid;
   grid-template-rows: 1fr;
@@ -85,7 +85,7 @@ const RowWrapper = styled(Row)<{ bgColor: string; active: boolean }>`
   transition: 200ms;
   align-items: center;
   padding: 1rem;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius};
 `
 
 function listUrlRowHTMLId(listUrl: string) {

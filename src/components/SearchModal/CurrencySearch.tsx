@@ -32,7 +32,7 @@ const ContentWrapper = styled(Column)`
 
 const Footer = styled.div`
   width: 100%;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   padding: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -254,7 +254,7 @@ export function CurrencySearch({
               <Row align="center" width="100%" justify="center">
                 <ButtonLight
                   width="fit-content"
-                  borderRadius="12px"
+                  borderRadius="0.325rem"
                   padding="8px 12px"
                   onClick={() => setShowExpanded(!showExpanded)}
                 >
@@ -276,7 +276,7 @@ export function CurrencySearch({
           <Row align="center" width="100%" justify="center" style={{ position: 'absolute', bottom: '80px', left: 0 }}>
             <ButtonLight
               width="fit-content"
-              borderRadius="12px"
+              borderRadius="0.325rem"
               padding="8px 12px"
               onClick={() => setShowExpanded(!showExpanded)}
             >

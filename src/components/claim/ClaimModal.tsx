@@ -143,7 +143,7 @@ export default function ClaimModal() {
               disabled={!isAddress(account ?? '')}
               padding="16px 16px"
               width="100%"
-              borderRadius="12px"
+              borderRadius="0.325rem"
               mt="1rem"
               onClick={onClaim}
             >

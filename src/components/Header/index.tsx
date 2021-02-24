@@ -122,7 +122,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -138,7 +138,7 @@ const UNIAmount = styled(AccountElement)`
   height: 36px;
   font-weight: 500;
   background-color: ${({ theme }) => theme.bg3};
-  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #2172e5 100%), #edeef2;
+  background: radial-gradient(175% 180% at 2% 0%, #ff007a 0%, #009fd6 100%), #edeef2;
 `
 
 const UNIWrapper = styled.span`
@@ -162,7 +162,7 @@ const HideSmall = styled.span`
 `
 
 const NetworkCard = styled(YellowCard)`
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   padding: 8px 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin: 0;
@@ -221,7 +221,7 @@ const StyledNavLink = styled(NavLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius: ${({ theme }) => theme.borderRadius};
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -248,7 +248,7 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius: ${({ theme }) => theme.borderRadius};
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -275,7 +275,7 @@ export const StyledMenuButton = styled.button`
   background-color: ${({ theme }) => theme.bg3};
   margin-left: 8px;
   padding: 0.15rem 0.5rem;
-  border-radius: 0.5rem;
+  border-radius: ${({ theme }) => theme.borderRadius};
 
   :hover,
   :focus {
@@ -331,7 +331,7 @@ export default function Header() {
         <Title href=".">
           <UniIcon>
             {/* <img width={'24px'} src={darkMode ? LogoDark : Logo} alt="logo" /> */}
-            <img width={'24px'} src={Logo} alt="logo" />
+            <img width={'40px'} src={Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
@@ -357,6 +357,9 @@ export default function Header() {
           {/* <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
           </StyledNavLink> */}
+          <StyledNavLink id={`stake-nav-link`} to={'/yield'}>
+            Yield
+          </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://analytics.sushiswap.fi'}>
             Analytics <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>

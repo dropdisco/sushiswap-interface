@@ -27,7 +27,7 @@ const Footer = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   border-top: 1px solid ${({ theme }) => theme.bg3};

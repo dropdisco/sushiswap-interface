@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
-import { useMasterChefContract } from './useContract'
-import { useTransactionAdder } from '../state/transactions/hooks'
+import { useMasterChefContract } from '../useContract'
+import { useTransactionAdder } from '../../state/transactions/hooks'
 
 const useMasterChef = () => {
   const addTransaction = useTransactionAdder()

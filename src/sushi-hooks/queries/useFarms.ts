@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { exchange } from '../apollo/client'
-import { liquidityPositionSubsetQuery } from '../apollo/queries'
+import { exchange } from '../../apollo/client'
+import { liquidityPositionSubsetQuery } from '../../apollo/queries'
 
 import sushiData from '@sushiswap/sushi-data'
 import _ from 'lodash'
