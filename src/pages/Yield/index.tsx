@@ -57,7 +57,7 @@ export default function Pool() {
       }
     }
   })
-  console.log('farmsWithUserDetails:', farmsWithUserDetails)
+  //console.log('farmsWithUserDetails:', farmsWithUserDetails)
 
   // Search Setup
   const options = { keys: ['symbol', 'name', 'pair'] }
@@ -66,8 +66,7 @@ export default function Pool() {
     options
   })
   const flattenSearchResults = result.map((a: { item: any }) => (a.item ? a.item : a))
-
-  console.log('flattenSearchResults:', flattenSearchResults)
+  //console.log('flattenSearchResults:', flattenSearchResults)
 
   // Sorting Setup
   const { items, requestSort, sortConfig } = useSortableData(flattenSearchResults)
