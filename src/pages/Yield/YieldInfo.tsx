@@ -119,26 +119,28 @@ const YieldInfo = ({ pool, onClose }: YieldInfoProps) => {
             </div>
             <div>
               <div className="pt-4 px-6">
-                <RowBetween>
-                  <ButtonPrimary
-                    padding="8px"
-                    borderRadius="8px"
-                    as={Link}
-                    to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
-                    width="48%"
-                  >
-                    Add
-                  </ButtonPrimary>
-                  <ButtonPrimary
-                    padding="8px"
-                    borderRadius="8px"
-                    as={Link}
-                    width="48%"
-                    to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                  >
-                    Remove
-                  </ButtonPrimary>
-                </RowBetween>
+                <div className="rounded rounded-md p-2 bg-black">
+                  <RowBetween>
+                    <ButtonPrimary
+                      padding="6px"
+                      borderRadius="8px"
+                      as={Link}
+                      to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                      width="48%"
+                    >
+                      Add
+                    </ButtonPrimary>
+                    <ButtonPrimary
+                      padding="6px"
+                      borderRadius="8px"
+                      as={Link}
+                      width="48%"
+                      to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                    >
+                      Remove
+                    </ButtonPrimary>
+                  </RowBetween>
+                </div>
               </div>
               {pool?.userDetails && (
                 <div className="pt-4 px-6">

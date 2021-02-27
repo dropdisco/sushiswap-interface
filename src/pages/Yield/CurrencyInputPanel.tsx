@@ -32,6 +32,8 @@ const ButtonSelect = styled.button<{ selected: boolean }>`
   user-select: none;
   border: none;
   padding: 0 0.5rem;
+  margin: 0 0.25rem;
+  width: 6rem;
 
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
@@ -78,7 +80,7 @@ const Container = styled.div<{ hideInput: boolean; cornerRadiusTopNone?: boolean
 `
 
 const StyledButtonName = styled.span<{ active?: boolean }>`
-  ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0 0.25rem;')}
+  ${({ active }) => (active ? '  margin: 0 auto;' : '  margin: 0 auto;')}
   font-size:  ${({ active }) => (active ? '20px' : '16px')};
 
 `

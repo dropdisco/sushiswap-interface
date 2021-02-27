@@ -36,26 +36,26 @@ export default function Pool() {
   const farms = useFarms()
 
   // todo: this is inefficient on each rerender
-  const farmsWithUserDetails = [] as any // for logging
-  const farmsWithUserDetails_ = farms?.map((farm: any) => {
+  //const farmsWithUserDetails = [] as any // for logging
+  const farmsWithUserDetails = farms?.map((farm: any) => {
     const userDetails = userFarms?.farms?.find((detail: any) => farm.id === detail.pid)
-    if (userDetails) {
-      // for logging
-      farmsWithUserDetails.push({
-        ...farm,
-        userDetails: { ...userDetails }
-      })
-    }
     // if (userDetails) {
-    //   return {
+    //   // for logging
+    //   farmsWithUserDetails.push({
     //     ...farm,
     //     userDetails: { ...userDetails }
-    //   }
-    // } else {
-    //   return {
-    //     ...farm
-    //   }
+    //   })
     // }
+    if (userDetails) {
+      return {
+        ...farm,
+        userDetails: { ...userDetails }
+      }
+    } else {
+      return {
+        ...farm
+      }
+    }
   })
   console.log('farmsWithUserDetails:', farmsWithUserDetails)
 

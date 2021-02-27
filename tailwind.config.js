@@ -49,7 +49,8 @@ module.exports = {
         'blue-trader': '#1976d3',
         'gray-trader-outline': '#374151',
         'gray-trader-input': '#1f222d',
-        'gray-trader-base': '#121722'
+        'gray-trader-base': '#121722',
+        'grey-brand-dark': '#20242a'
       },
       linearBorderGradients: theme => ({
         colors: theme('colors')
