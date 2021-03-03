@@ -16,15 +16,15 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 })
 
 //// run in production
-module.exports = {
-  plugins: [
-    require('tailwindcss'),
-    require('autoprefixer'),
-    ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])
-  ]
-}
+// module.exports = {
+//   plugins: [
+//     require('tailwindcss'),
+//     require('autoprefixer'),
+//     ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])
+//   ]
+// }
 
 //Run for full tailwinds in development
-// module.exports = {
-//   plugins: [require('tailwindcss'), require('autoprefixer')]
-// }
+module.exports = {
+  plugins: [require('tailwindcss'), require('autoprefixer')]
+}

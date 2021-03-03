@@ -56,29 +56,29 @@ const YieldInfo = ({ pool, onClose }: YieldInfoProps) => {
   const lpToken = pool?.pair
 
   // handle allowance
-  const allowance = useAllowance(lpToken)
+  // const allowance = useAllowance(lpToken)
 
-  // handle approval
-  const [requestedApproval, setRequestedApproval] = useState(false)
-  const { onApprove } = useApprove(lpToken)
-  const handleApprove = useCallback(async () => {
-    try {
-      setRequestedApproval(true)
-      const txHash = await onApprove()
-      if (!txHash) {
-        setRequestedApproval(false)
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }, [onApprove, setRequestedApproval])
+  // // handle approval
+  // const [requestedApproval, setRequestedApproval] = useState(false)
+  // const { onApprove } = useApprove(lpToken)
+  // const handleApprove = useCallback(async () => {
+  //   try {
+  //     setRequestedApproval(true)
+  //     const txHash = await onApprove()
+  //     if (!txHash) {
+  //       setRequestedApproval(false)
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }, [onApprove, setRequestedApproval])
 
-  // SLP token balance and staked balance
-  const tokenBalance = useTokenBalance(pool?.pair)
-  const stakedBalance = useStakedBalance(Number(pool?.id))
+  // // SLP token balance and staked balance
+  // const tokenBalance = useTokenBalance(pool?.pair)
+  // const stakedBalance = useStakedBalance(Number(pool?.id))
 
-  //handle stake and unstake
-  const { withdraw, deposit, harvest } = useMasterChef()
+  // //handle stake and unstake
+  // const { withdraw, deposit, harvest } = useMasterChef()
 
   // const state = {
   //   needsApproval: !allowance.toNumber(),

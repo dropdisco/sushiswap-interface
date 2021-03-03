@@ -1,16 +1,18 @@
 import { useCallback } from 'react'
+import ethers from 'ethers'
+import { BigNumber } from '@ethersproject/bignumber'
 import { useMasterChefContract } from '../useContract'
 import { useTransactionAdder } from '../../state/transactions/hooks'
 
 const useMasterChef = () => {
   const addTransaction = useTransactionAdder()
-  const masterChefContract = useMasterChefContract()
+  const masterChefContract = useMasterChefContract(true) // withSigner
 
   // Deposit
   const deposit = useCallback(
     async (pid: number, amount: string) => {
       try {
-        const tx = await masterChefContract?.methods.deposit(pid, amount)
+        const tx = await masterChefContract?.deposit(pid, ethers.utils.parseUnits(amount))
         return addTransaction(tx, { summary: 'Deposit' })
       } catch (e) {
         return e
@@ -23,7 +25,7 @@ const useMasterChef = () => {
   const withdraw = useCallback(
     async (pid: number, amount: string) => {
       try {
-        const tx = await masterChefContract?.methods.withdraw(pid, amount)
+        const tx = await masterChefContract?.withdraw(pid, ethers.utils.parseUnits(amount))
         return addTransaction(tx, { summary: 'Withdraw' })
       } catch (e) {
         return e

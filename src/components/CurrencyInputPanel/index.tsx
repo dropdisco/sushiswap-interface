@@ -79,8 +79,10 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 
-const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
+const Container = styled.div<{ hideInput: boolean; cornerRadiusTopNone?: boolean; cornerRadiusBottomNone?: boolean }>`
+  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '12px')};
+  border-radius: ${({ cornerRadiusTopNone }) => cornerRadiusTopNone && '0 0 12px 12px'};
+  border-radius: ${({ cornerRadiusBottomNone }) => cornerRadiusBottomNone && '12px 12px 0 0'};
   border: 1px solid ${({ theme }) => theme.bg2};
   background-color: ${({ theme }) => theme.bg1};
 `
@@ -93,6 +95,8 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
+  padding-right: 8px;
+  padding-left: 8px;
   background-color: ${({ theme }) => theme.primary5};
   border: 1px solid ${({ theme }) => theme.primary5};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -131,6 +135,8 @@ interface CurrencyInputPanelProps {
   id: string
   showCommonBases?: boolean
   customBalanceText?: string
+  cornerRadiusBottomNone?: boolean
+  cornerRadiusTopNone?: boolean
 }
 
 export default function CurrencyInputPanel({
@@ -148,7 +154,9 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
-  customBalanceText
+  customBalanceText,
+  cornerRadiusBottomNone,
+  cornerRadiusTopNone
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
 
@@ -163,7 +171,11 @@ export default function CurrencyInputPanel({
 
   return (
     <InputPanel id={id}>
-      <Container hideInput={hideInput}>
+      <Container
+        hideInput={hideInput}
+        cornerRadiusBottomNone={cornerRadiusBottomNone}
+        cornerRadiusTopNone={cornerRadiusTopNone}
+      >
         {!hideInput && (
           <LabelRow>
             <RowBetween>

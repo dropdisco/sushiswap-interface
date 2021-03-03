@@ -360,6 +360,9 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/yield'}>
             Yield
           </StyledNavLink>
+          <StyledNavLink id={`search-nav-link`} to={'/explore'}>
+            Explore
+          </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://analytics.sushiswap.fi'}>
             Analytics <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>

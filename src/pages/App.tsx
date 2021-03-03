@@ -1,4 +1,6 @@
 import React, { Suspense } from 'react'
+import { ChainId } from '@sushiswap/sdk'
+import { useActiveWeb3React } from '../hooks/index'
 import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -33,6 +35,8 @@ import VotePage from './Vote/VotePage'
 
 import TestBed from '../sushi-hooks/TestBed'
 import Yield from './Yield'
+import Token from './Token'
+import Explore from './Explore'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -73,6 +77,23 @@ function TopLevelModals() {
   return <AddressClaimModal isOpen={open} onDismiss={toggle} />
 }
 
+const MainnetRoutes = () => {
+  const { chainId } = useActiveWeb3React()
+  return (
+    <>
+      {chainId === ChainId.MAINNET ? (
+        <>
+          <Route exact strict path="/explore" component={Explore} />
+          <Route exact strict path="/token" component={Token} />
+          <Route exact strict path="/yield" component={Yield} />
+        </>
+      ) : (
+        <Route component={RedirectPathToSwapOnly} />
+      )}
+    </>
+  )
+}
+
 export default function App() {
   return (
     <Suspense fallback={null}>
@@ -90,7 +111,9 @@ export default function App() {
           <Web3ReactManager>
             <Switch>
               {process.env.NODE_ENV === 'development' && <Route exact strict path="/testbed" component={TestBed} />}
-              <Route exact strict path="/yield" component={Yield} />
+              <Route exact strict path="/explore" component={MainnetRoutes} />
+              <Route exact strict path="/token" component={MainnetRoutes} />
+              <Route exact strict path="/yield" component={MainnetRoutes} />
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
