@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { useDashboard2Contract, useMasterChefContract } from '../useContract'
+import { useDashboard2Contract, useMasterChefContract } from './useContract'
 
 const useAllFarms = () => {
   const masterChefContract = useMasterChefContract()

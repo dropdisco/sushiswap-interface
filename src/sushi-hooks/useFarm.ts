@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useActiveWeb3React } from '../../hooks'
-import { useMasterChefContract, useDashboard2Contract } from '../useContract'
-import { useBlockNumber } from '../../state/application/hooks'
-import { isAddress } from '../../utils'
+import { useActiveWeb3React } from '../hooks'
+import { useMasterChefContract, useDashboard2Contract } from './useContract'
+import { useBlockNumber } from '../state/application/hooks'
+import { isAddress } from '../utils'
 
 const useFarm = (lpTokenAddress: string) => {
   const [farm, setFarm] = useState<any>()

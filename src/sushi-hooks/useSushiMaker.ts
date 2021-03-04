@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { BigNumber } from 'ethers'
-import { useMakerContract, useMasterChefContract, useMakerInfoContract } from '../useContract'
-import { useTransactionAdder } from '../../state/transactions/hooks'
+import { useMakerContract, useMasterChefContract, useMakerInfoContract } from './useContract'
+import { useTransactionAdder } from '../state/transactions/hooks'
 
 const useMaker = () => {
   const addTransaction = useTransactionAdder()

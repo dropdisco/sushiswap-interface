@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import ethers from 'ethers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { useMasterChefContract } from '../useContract'
-import { useTransactionAdder } from '../../state/transactions/hooks'
+import { useMasterChefContract } from './useContract'
+import { useTransactionAdder } from '../state/transactions/hooks'
 
 const useMasterChef = () => {
   const addTransaction = useTransactionAdder()

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from 'ethers'
-import { useActiveWeb3React } from '../../hooks'
+import { useActiveWeb3React } from '../hooks'
 
-import { useMasterChefContract, useMakerInfoContract } from '../useContract'
+import { useMasterChefContract, useMakerInfoContract } from './useContract'
 
 const useMaker = () => {
   const { account } = useActiveWeb3React()
