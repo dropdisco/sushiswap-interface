@@ -32,7 +32,7 @@ import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 
 import TestBed from '../sushi-hooks/TestBed'
-//import Yield from './Yield'
+import Yield from './Yield'
 //import Pair from './Pair'
 //import Explore from './Explore'
 
@@ -96,6 +96,7 @@ export default function App() {
             <Switch>
               {process.env.NODE_ENV === 'development' && <Route exact strict path="/testbed" component={TestBed} />}
               <Route exact strict path="/swap" component={Swap} />
+              <Route exact strict path="/yield" component={Yield} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
