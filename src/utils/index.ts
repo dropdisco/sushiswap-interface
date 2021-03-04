@@ -6,6 +6,109 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER, ROUTER_ADDRESS } from '@sushiswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
+import ethers from 'ethers'
+import Numeral from 'numeral'
+
+// Vision Utils ----------------------------------------------------------//
+
+export const formatNumber = (num: any) => {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+export const toK = (num: any) => {
+  return Numeral(num).format('0.[00]a')
+}
+
+// using a currency library here in case we want to add more in future
+const priceFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
+export const formattedNum = (number?: any, usd = false) => {
+  if (isNaN(number) || number === '' || number === undefined) {
+    return usd ? '$0' : 0
+  }
+  const num = parseFloat(number)
+
+  if (num > 500000000) {
+    return (usd ? '$' : '') + toK(num.toFixed(0))
+  }
+
+  if (num === 0) {
+    if (usd) {
+      return '$0'
+    }
+    return 0
+  }
+
+  if (num < 0.0001 && num > 0) {
+    return usd ? '< $0.0001' : '< 0.0001'
+  }
+
+  if (num > 1000) {
+    return usd
+      ? '$' + Number(parseFloat(String(num)).toFixed(0)).toLocaleString()
+      : '' + Number(parseFloat(String(num)).toFixed(0)).toLocaleString()
+  }
+
+  if (usd) {
+    if (num < 0.1) {
+      return '$' + Number(parseFloat(String(num)).toFixed(4))
+    } else {
+      const usdString = priceFormatter.format(num)
+      return '$' + usdString.slice(1, usdString.length)
+    }
+  }
+
+  return Number(parseFloat(String(num)).toFixed(5))
+}
+
+// Lite Utils ----------------------------------------------------------//
+
+export const formatUSD = (value: number, maxFraction = 0) => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: maxFraction
+  })
+  return formatter.format(value)
+}
+
+export const formatPercentage = (value: number, maxFraction = 2) => {
+  const formatted = String(value * 100)
+  if (maxFraction > 0) {
+    const split = formatted.split('.')
+    if (split.length > 1) {
+      return split[0] + '.' + split[1].substr(0, maxFraction)
+    }
+  }
+  return formatted
+}
+
+export const formatBalance = (value: ethers.BigNumberish, decimals = 18, maxFraction = 0) => {
+  const formatted = ethers.utils.formatUnits(value, decimals)
+  if (maxFraction > 0) {
+    const split = formatted.split('.')
+    if (split.length > 1) {
+      return split[0] + '.' + split[1].substr(0, maxFraction)
+    }
+  }
+  return formatted
+}
+
+export const parseBalance = (value: string, decimals = 18) => {
+  return ethers.utils.parseUnits(value || '0', decimals)
+}
+
+export const isEmptyValue = (text: string) =>
+  ethers.BigNumber.isBigNumber(text)
+    ? ethers.BigNumber.from(text).isZero()
+    : text === '' || text.replace(/0/g, '').replace(/\./, '') === ''
+
+// Default Utils ----------------------------------------------------------//
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
