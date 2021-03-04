@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   padding: 1rem;
 `
 
+export const WrapperNoPadding = styled.div`
+  position: relative;
+`
+
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`
   padding: 2px;
 
@@ -41,7 +45,7 @@ export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`
       : severity === 2
       ? theme.yellow2
       : severity === 1
-      ? theme.text3
+      ? theme.text1
       : theme.green1};
 `
 
@@ -123,7 +127,7 @@ const SwapCallbackErrorInnerAlertTriangle = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 12px;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: 12px;
   min-width: 48px;
   height: 48px;
 `
@@ -143,7 +147,7 @@ export const SwapShowAcceptChanges = styled(AutoColumn)`
   background-color: ${({ theme }) => transparentize(0.9, theme.primary1)};
   color: ${({ theme }) => theme.primary1};
   padding: 0.5rem;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: 12px;
   margin-top: 8px;
 `
 export const Separator = styled.div`

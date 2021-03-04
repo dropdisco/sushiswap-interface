@@ -33,7 +33,7 @@ import VotePage from './Vote/VotePage'
 
 import TestBed from '../sushi-hooks/TestBed'
 import Yield from './Yield'
-//import Pair from './Pair'
+import Pair from './Pair'
 //import Explore from './Explore'
 
 const AppWrapper = styled.div`
@@ -97,6 +97,7 @@ export default function App() {
               {process.env.NODE_ENV === 'development' && <Route exact strict path="/testbed" component={TestBed} />}
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/yield" component={Yield} />
+              <Route exact strict path="/pair" component={Pair} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
