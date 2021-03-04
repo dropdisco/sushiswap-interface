@@ -129,6 +129,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@types/numeral": "^2.0.1",
     "numeral": "^2.0.6"
   }
 }
